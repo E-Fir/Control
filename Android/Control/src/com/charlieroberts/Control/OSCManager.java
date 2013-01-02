@@ -31,7 +31,7 @@ public class OSCManager extends Plugin {
 	public int receivePort; 
 	public final Object        sync = new Object();
 	
-	public OSCPortIn receiver = null;
+	public OSCTCPPortIn receiver = null;
 	public OSCPortOut sender;
 	public OSCListener listener;
 	public String ipAddress;
@@ -44,7 +44,7 @@ public class OSCManager extends Plugin {
 		try {
 		    if (action.equals("startOSCListener") && receiver == null) {
      		    Log.d("OSCManager", "building client");	
-    			receiver = new OSCPortIn(8080);
+    			receiver = new OSCTCPPortIn(8080);
     			listener = new OSCListener() {
     	        	public void acceptMessage(java.util.Date time, OSCMessage message) {
     	        	    Object[] args = message.getArguments();
@@ -126,7 +126,7 @@ public class OSCManager extends Plugin {
 				sender = new OSCPortOut( InetAddress.getByName(ipAddress), data.getInt(1) );
 				hasAddress = true;
     		}else if(action.equals("setOSCReceivePort")){
-			   	receiver = new OSCPortIn(data.getInt(0));
+			   	receiver = new OSCTCPPortIn(data.getInt(0));
 			   	receiver.addListener("/", listener);
 			   	System.err.println("MADE NEW PORT WHICH WAS " + data.getInt(0));
     		}else{
