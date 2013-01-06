@@ -9,7 +9,7 @@ reality software. It is based on web-standards and communicates with other devic
 
 Get started
 -----------
-testtest
+test
 [charlie-roberts.com/Control/](http://www.charlie-roberts.com/Control)
 
 Community
